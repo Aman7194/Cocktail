@@ -1,0 +1,26 @@
+<div>
+<img src="https://i.pinimg.com/originals/15/aa/a1/15aaa168198dc23de0a2fb1edacc4a8a.jpg" 
+class="center" 
+alt="">
+</div>
+
+<h1 style="text-align: center;">Welcome to the Drinks World !</h1>
+
+<h4 style="text-align: center;">Please choose the Category below which you want to Explore</h4>
+<div class="row" style="text-align: center;">
+    <div class="col-xs-12">
+<form (submit)="search()">
+      <label for="categories"><h4 style="margin: 10px;">Categories:</h4></label>
+      <select id="categories" 
+      [(ngModel)]="categorySelected" 
+      name="categories">
+        <option>Ordinary Drink</option>
+        <option>Cocktail</option>
+      </select>
+      
+    <button type="submit" class="drink-search__button">
+      <span class="glyphicon glyphicon-search"></span>
+    </button> 
+  </form>
+</div>
+</div>

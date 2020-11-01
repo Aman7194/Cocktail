@@ -1,0 +1,102 @@
+<h4 style="text-align: center;">Welcome to the Cocktails Page!</h4>
+<div class="row" style="text-align: center;">
+    <div class="col-xs-12">
+<form (submit)="search()">
+     
+    <label for="Filter"><h4 style="margin: 10px;">Search by:</h4></label>
+      <select id="Filter" 
+      [(ngModel)]="filter" 
+      name="Filter">
+        <option>Name</option>
+        <option>Ingredient</option>
+      </select>
+      <p *ngIf="filter === value1">
+        <label for="Filter"><h4 style="margin: 10px;">Enter Name:</h4></label>
+        <input id="search" type="search" class="drink-search__input"
+        placeholder="E.g.: 155 belmont"
+        [(ngModel)]="newname" 
+        name="newname"
+        required
+        />  
+      </p>
+      <p *ngIf="filter === value2">
+        <label for="Filter"><h4 style="margin: 10px;">Enter Ingredient:</h4></label>
+        <input id="search" type="search" class="drink-search__input"
+        placeholder="E.g.: rum"
+        [(ngModel)]="ingredient" 
+        name="ingredient"
+        />  
+      </p>
+    <button type="submit" class="btn btn-primary"> 
+       Search <span class="glyphicon glyphicon-search"></span>
+    </button>
+    
+    <div *ngIf="filter === value1">
+   <div *ngFor="let d of fetchedposts ; let i = index">
+    <div *ngIf="d[i].strCategory!=='Cocktail'">
+      <br>
+      <h2><p>Please search in Ordinary Drinks!</p></h2>
+    </div>
+    <div *ngIf="d[i].strCategory==='Cocktail'">
+    <h2 class="drink-detail__heading">{{ d[i].strDrink }}</h2>
+    <div class="drink-detail__main">
+      <img class="drink-detail__image" src="{{ d[i].strDrinkThumb }}"
+        alt="" />
+      <dl class="drink-detail__list">
+        <div class="drink-detail__list-group">
+          <dt class="drink-detail__title">Name</dt>
+          <dd class="drink-detail__data">{{ d[i].strDrink }}</dd>
+        </div>
+        <div class="drink-detail__list-group">
+          <dt class="drink-detail__title">Category</dt>
+          <dd class="drink-detail__data">{{ d[i].strCategory }}</dd>
+        </div>
+        <div class="drink-detail__list-group">
+          <dt class="drink-detail__title">
+            <abbr title="International Bartenders Association">
+              IBA</abbr> Category
+          </dt>
+          <dd class="drink-detail__data">
+            {{ d.strIBA ? d.strIBA : 'Unknown' }}
+          </dd>
+        </div>
+        <div class="drink-detail__list-group">
+          <dt class="drink-detail__title">Glass</dt>
+          <dd class="drink-detail__data">{{ d[i].strGlass }}</dd>
+        </div>
+        <div class="drink-detail__list-group">
+          <dt class="drink-detail__title">Alcoholic</dt>
+          <dd class="drink-detail__data">{{ d[i].strAlcoholic }}</dd>
+        </div>
+        <div class="drink-detail__list-group">
+          <dt class="drink-detail__title">Last Modified</dt>
+          <dd class="drink-detail__data">{{ d[i].dateModified }}</dd>
+        </div>
+      
+      </dl>
+    </div>
+</div>
+</div>
+</div>
+
+<div *ngIf="filter === value2">
+<div *ngFor="let d of fetchedposts1 ; let i = index">
+  
+  <h2 class="drink-detail__heading">{{ d[i].strDrink }}</h2>
+  <div class="drink-detail__main">
+    <img class="drink-detail__image" src="{{ d[i].strDrinkThumb }}"
+      alt="" />
+    <dl class="drink-detail__list">
+      <div class="drink-detail__list-group">
+        <dt class="drink-detail__title">Name</dt>
+        <dd class="drink-detail__data">{{ d[i].strDrink }}</dd>
+      </div>
+ 
+    </dl>
+  </div>
+</div>
+</div>
+    
+  </form>
+</div>
+</div>
